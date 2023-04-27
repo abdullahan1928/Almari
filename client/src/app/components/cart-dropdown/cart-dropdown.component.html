@@ -1,0 +1,19 @@
+<div class='cart-dropdown-container'>
+    <div class='cart-items'>
+        <cart-item
+            *ngFor="let cartItem of cartService.cartItems"
+            [cartItem]='cartItem'
+        ></cart-item>
+        <img
+            src='../../../assets/empty-cart.png'
+            alt="empty"
+            class='empty-cart'
+            *ngIf="cartService.getCartItems().length === 0"
+        />
+    </div>
+    <a routerLink='/checkout'>
+        <app-button btnType='primaryBtn'>
+            GO TO CHECKOUT
+        </app-button>
+    </a>
+</div>

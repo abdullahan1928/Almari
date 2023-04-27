@@ -1,0 +1,16 @@
+<div class='category-preview-container'>
+    <h2>
+        <a
+            class='category-preview-title'
+            routerLink="/shop/{{category.title | lowercase}}"
+        >
+            {{category.title | uppercase}}
+        </a>
+    </h2>
+    <div class="category-preview">
+        <product-card
+            *ngFor="let product of products | slice:0:4"
+            [product]="product"
+        ></product-card>
+    </div>
+</div>

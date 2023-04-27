@@ -1,0 +1,17 @@
+<div class="categories-container">
+    <div
+        class="category-item-container"
+        *ngFor="let category of categories"
+        routerLink="/shop/{{category.title.toLowerCase()}}"
+    >
+        <div
+            class="category-item-bg-img"
+            [ngStyle]="{'background-image': 'url(' + category.imageUrl + ')','background-size': 'cover', 'background-position': 'center', width: '100%', height: '100%'}"
+        ></div>
+        <div class="category-item-inner-container">
+            <h2 class='category-item-title'>
+                {{category.title}}
+            </h2>
+        </div>
+    </div>
+</div>

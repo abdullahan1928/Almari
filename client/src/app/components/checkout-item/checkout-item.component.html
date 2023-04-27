@@ -1,0 +1,41 @@
+<div class='checkout-item-img'>
+    <img
+        src='{{cartItem.imageUrl}}'
+        alt='{{cartItem.name}}'
+    />
+</div>
+
+<span class='checkout-item-name'>{{cartItem.name}}</span>
+
+<div class='checkout-item-quantity'>
+    <div
+        class='checkout-arrow'
+        (click)="cartService.decQuantity(cartItem)"
+        [ngStyle]="{
+            'pointer-events': cartItem.quantity > 1 ? 'all' : 'none',
+            color: cartItem.quantity > 1 ? 'black' : 'grey'
+            }"
+    >
+        &#10094;
+    </div>
+
+    <span class='checkout-item-value'> {{cartItem.quantity}} </span>
+
+    <div
+        class='checkout-arrow'
+        (click)="cartService.incQuantity(cartItem)"
+    >
+        &#10095;
+    </div>
+</div>
+
+<span class='checkout-item-price'>
+    ${{cartItem.quantity*cartItem.price}}
+</span>
+
+<div
+    class='remove-from-cart-btn'
+    (click)="cartService.removeItem(cartItem)"
+>
+    &#10005;
+</div>

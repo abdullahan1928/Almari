@@ -1,0 +1,29 @@
+<div class='checkout-container'>
+    <div class='checkout-header'>
+        <div class='checkout-header-block'>
+            Product
+        </div>
+        <div class='checkout-header-block'>
+            Description
+        </div>
+        <div class='checkout-header-block'>
+            Quantity
+        </div>
+        <div class='checkout-header-block'>
+            Price
+        </div>
+        <div class='checkout-header-block'>
+            Remove
+        </div>
+    </div>
+
+    <checkout-item
+        *ngFor="let cartItem of cartService.cartItems"
+        key='cartItem.id'
+        [cartItem]='cartItem'
+    ></checkout-item>
+
+    <div class='total-price'>
+        Total : ${{cartService.cartTotal()}}
+    </div>
+</div>

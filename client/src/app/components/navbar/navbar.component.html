@@ -1,0 +1,43 @@
+<div class="nav-container">
+    <a
+        class="logo-container"
+        routerLink="/"
+    >
+        <img src="../../../assets/crown-logo.svg" />
+    </a>
+    <div class='nav-links-container'>
+        <a
+            class="nav-link"
+            routerLink="/shop"
+        >
+            SHOP
+        </a>
+        <a
+            class="nav-link"
+            routerLink="/contact"
+        >
+            CONTACT
+        </a>
+        <!-- <span
+            *ngIf="authService.isLoggedIn"
+            class='nav-link'
+            (click)='authService.SignOut()'
+        >
+            LOG OUT
+        </span> -->
+        <!-- *ngIf="!authService.isLoggedIn" -->
+        <a
+            class="nav-link"
+            routerLink="/login"
+        >
+            LOG IN
+        </a>
+        <cart-icon
+            class="cart-ico"
+            (click)="toggleCart()"
+        ></cart-icon>
+        <cart-dropdown *ngIf="isCartOpen"></cart-dropdown>
+    </div>
+</div>
+
+<router-outlet></router-outlet>

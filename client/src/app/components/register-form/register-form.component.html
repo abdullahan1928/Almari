@@ -1,0 +1,48 @@
+<div class="register-form-container">
+    <h2 class="register-title">
+        Create your account
+        <br />
+        to get started
+    </h2>
+
+    <!-- <form onSubmit={handleSubmit}> -->
+    <form-input
+        *ngFor="let inputData of registerFormInputData"
+        [label]="inputData.label"
+        [required]="inputData.required"
+        [type]="inputData.type"
+        [name]="inputData.name"
+        [value]="defaultRegisterFormFields[inputData.name]"
+    > </form-input>
+    <!-- onChange="handleChange" -->
+
+    <!-- <span class="error-reg">{error ? <p>{error}</p> : <p></p>}</span> -->
+
+    <app-button
+        btnType="primaryBtn"
+        type="submit"
+    >
+        Register
+    </app-button>
+
+    <!-- <app-button
+        btnType="google"
+        type="button"
+        (click)='authService.GoogleAuth()'
+    > -->
+    <!-- <img
+                src={GoogleLogo}
+                alt="Google Logo"
+                class="google-logo"
+            /> -->
+    <!-- Register with Google
+    </app-button> -->
+
+    <div class="have-account">
+        Already have an account?
+        <a href="/login">
+            <span class="login-link">Login</span>
+        </a>
+    </div>
+    <!-- </form> -->
+</div>

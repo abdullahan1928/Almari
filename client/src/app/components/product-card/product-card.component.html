@@ -1,0 +1,30 @@
+<div
+    class='prod-card-container'
+    *ngIf="product"
+>
+    <img
+        src="{{product.imageUrl}}"
+        alt="product.name"
+        loading="lazy"
+    />
+
+    <div class='prod-card-details'>
+        <span class='prod-name'>
+            {{product.name}}
+        </span>
+
+        <span class='prod-price'>
+            ${{product.price}}
+        </span>
+
+        <app-button
+            class="btn"
+            btnType='addToCart'
+            (click)='cartService.addToCart(product)'
+        >
+            <p class="add-cart-text">
+                Add to cart
+            </p>
+        </app-button>
+    </div>
+</div>
