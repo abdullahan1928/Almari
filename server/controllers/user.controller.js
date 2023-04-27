@@ -6,7 +6,7 @@ jwt_secret = "secret";
 
 const User = require("../models/user.model");
 
-exports.signUp = async (req, res) => {
+exports.register = async (req, res) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
         return res.status(400).json({ errors: errors.array() });
@@ -44,7 +44,7 @@ exports.signUp = async (req, res) => {
 };
 
 
-exports.signIn = async (req, res) => {
+exports.login = async (req, res) => {
 
     //getting email and password from body entered by the user
     const { email, password } = req.body;

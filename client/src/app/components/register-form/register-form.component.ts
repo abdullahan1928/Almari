@@ -10,7 +10,7 @@ import { AuthService } from 'src/app/services/auth/auth.service';
 })
 export class RegisterFormComponent implements OnInit {
 
-  constructor(public authService: AuthService) { }
+  constructor(private authService: AuthService) { }
 
   ngOnInit(): void {
   }
@@ -18,5 +18,19 @@ export class RegisterFormComponent implements OnInit {
   registerFormInputData: any = RegisterFormInputData;
 
   defaultRegisterFormFields: any = defaultRegisterFormFields;
+
+  email = this.defaultRegisterFormFields.email;
+  password = this.defaultRegisterFormFields.password;
+
+  handleRegisterSubmit(event: any) {
+    event.preventDefault();
+
+    // this.email = event.target.email.value;
+    // this.password = event.target.password.value;
+
+    console.log(event);
+
+    // this.authService.register(this.email, this.password);
+  }
 
 }

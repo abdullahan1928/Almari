@@ -1,17 +1,26 @@
-import { Injectable, NgZone } from '@angular/core';
-import { User } from '../../model/user-model';
-import { Router } from '@angular/router';
+import { HttpClient } from '@angular/common/http';
+import { Injectable } from '@angular/core';
 
 @Injectable({
-    providedIn: 'root',
+  providedIn: 'root'
 })
 
 export class AuthService {
-    userData: any; // Save logged in user data
-    constructor(
-        public router: Router,
-        public ngZone: NgZone // NgZone service to remove outside scope warning
-    ) {
-    }   
+
+  constructor(
+    private http: HttpClient
+  ) { }
+
+  url = 'http://localhost:3000/user';
+
+  login(email: string, password: string) {
+    return this.http.post(`${this.url}/login`, { email, password }).subscribe((response) => {
+      console.log(response);
+    });
+  }
+
+  register(email: string, password: string) {
+    return this.http.post(`${this.url}/register`, { email, password });
+  }
 
 }
