@@ -11,6 +11,6 @@ router.post(
         check("password").exists(),
     ], register)
 
-router.post("/signin", login);
+router.post("/login", login);
 
 module.exports = router;

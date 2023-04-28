@@ -18,15 +18,15 @@
         >
             CONTACT
         </a>
-        <!-- <span
+        <span
             *ngIf="authService.isLoggedIn"
             class='nav-link'
-            (click)='authService.SignOut()'
-        >
+            >
+            <!-- (click)='authService.SignOut()' -->
             LOG OUT
-        </span> -->
-        <!-- *ngIf="!authService.isLoggedIn" -->
+        </span>
         <a
+            *ngIf="!authService.isLoggedIn"
             class="nav-link"
             routerLink="/login"
         >

@@ -49,13 +49,19 @@ exports.login = async (req, res) => {
     //getting email and password from body entered by the user
     const { email, password } = req.body;
 
+    console.log(email, password)
+
 
     try {
         //checking if the user exists in database or not
         let user = await User.findOne({ email });
+        console.log(user)
+
         if (!user) {
             return res.status(422).json({ errors: [{ msg: 'Invalid Credentials' }] });
         }
+
+        console.log(user)
 
         // comparing the password entered by the user with the hashed password in database
         // bcrypt.compare() is a method which will return true if the password entered by the user is same as the hashed password in database
@@ -63,6 +69,7 @@ exports.login = async (req, res) => {
             return res.status(422).json({ errors: [{ msg: 'Invalid Credentials' }] });
         }
 
+        console.log(user)
 
         //finally if the user exists and the password is correct then we will send a session/token/jwt token to the user
         const data = {

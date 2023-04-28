@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { RegisterFormInputData } from 'src/app/database/register-form-input-data';
-import { defaultRegisterFormFields } from 'src/app/database/register-form-input-data';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from 'src/app/services/auth/auth.service';
 
 @Component({
@@ -10,27 +9,24 @@ import { AuthService } from 'src/app/services/auth/auth.service';
 })
 export class RegisterFormComponent implements OnInit {
 
-  constructor(private authService: AuthService) { }
+  constructor(
+    public authService: AuthService,
+  ) { }
+
+  registerForm!: FormGroup;
 
   ngOnInit(): void {
+    this.registerForm = new FormGroup({
+      name: new FormControl('', [Validators.required, Validators.minLength(2)]),
+      email: new FormControl('', [Validators.required, Validators.email]),
+      password: new FormControl('', [Validators.required, Validators.minLength(2)]),
+    });
   }
 
-  registerFormInputData: any = RegisterFormInputData;
-
-  defaultRegisterFormFields: any = defaultRegisterFormFields;
-
-  email = this.defaultRegisterFormFields.email;
-  password = this.defaultRegisterFormFields.password;
-
-  handleRegisterSubmit(event: any) {
+  onRegister(event: any) {
     event.preventDefault();
-
-    // this.email = event.target.email.value;
-    // this.password = event.target.password.value;
-
-    console.log(event);
-
-    // this.authService.register(this.email, this.password);
+    console.log(this.registerForm.value);
+    this.authService.register(this.registerForm.value);
   }
 
 }

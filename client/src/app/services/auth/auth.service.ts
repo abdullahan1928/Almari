@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -8,19 +9,44 @@ import { Injectable } from '@angular/core';
 export class AuthService {
 
   constructor(
-    private http: HttpClient
+    private http: HttpClient,
+    private route: Router
   ) { }
 
-  url = 'http://localhost:3000/user';
+  url = 'http://localhost:4000/user';
 
-  login(email: string, password: string) {
-    return this.http.post(`${this.url}/login`, { email, password }).subscribe((response) => {
-      console.log(response);
+  isRegistrationError = false;
+  isLoginError = false;
+
+  isLoggedIn = false;
+
+  login(loginForm: any) {
+    return this.http.post(`${this.url}/login`, loginForm).subscribe({
+      next: (response: any) => {
+        console.log(response);
+        localStorage.setItem('access_token', response.authToken)
+        this.route.navigate(['/']);
+        this.isLoggedIn = true;
+      },
+      error: (error) => {
+        console.log(error);
+        this.isLoginError = true;
+      }
     });
   }
 
-  register(email: string, password: string) {
-    return this.http.post(`${this.url}/register`, { email, password });
+  register(registerForm: any) {
+    return this.http.post(`${this.url}/register`, registerForm).subscribe({
+      next: (response: any) => {
+        console.log(response);
+        this.route.navigate(['/']);
+        this.isLoggedIn = true;
+      },
+      error: (error) => {
+        console.log(error);
+        this.isRegistrationError = true;
+      }
+    });
   }
 
 }

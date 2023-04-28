@@ -11,10 +11,38 @@
     margin-top: 20px;
     margin-bottom: 40px;
 
-    form-input {
+    form {
         display: flex;
         flex-direction: column;
+
+        .labels {
+            font-size: 16px;
+            font-weight: bold;
+            align-self: start;
+            margin-left: 80px;
+            margin-bottom: 10px;
+        }
+
+        .inputs {
+            font-size: 18px;
+            width: 70%;
+            height: 40px;
+            align-self: center;
+            text-indent: 7px;
+            border: none;
+            border-bottom: 1px solid gray;
+
+            &:focus {
+                outline: none;
+            }
+
+            &[type='password'] {
+                letter-spacing: 0.3em;
+            }
+        }
+
     }
+
 
     .msg-logged-in {
         align-self: start;
@@ -28,10 +56,6 @@
         color: red;
         margin-left: 80px;
         font-weight: bold;
-    }
-
-    .google-logo {
-        margin-right: 10px;
     }
 
     .no-account {

@@ -5,41 +5,44 @@
         to buy awesome clothes
     </h2>
 
-    <!-- <form onSubmit='handleSubmit()'> -->
-
-    <form-input
-        *ngFor="let inputData of loginFormInputData"
-        [label]="inputData.label"
-        [required]="inputData.required"
-        [type]="inputData.type"
-        [name]="inputData.name"
-        [value]="defaultLoginFormFields[inputData.name]"
-    ></form-input>
-
-    <!-- onChange="handleChange" -->
-
-    <!-- <span class="error-login">{error ? <p>{error}</p> : <p></p>}</span> -->
-
-    <app-button
-        btnType="primaryBtn"
-        type="submit"
-        (click)="handleSubmit()"
+    <form
+        (ngSubmit)="onLogin($event)"
+        name="loginForm"
+        [formGroup]="loginForm"
     >
-        Login
-    </app-button>
+        <label class='labels'>
+            Email
+        </label>
+        <input
+            class="inputs"
+            formControlName="email"
+            placeholder="Enter email address"
+            required
+        />
+        <br />
+        <label class='labels'>
+            Password
+        </label>
+        <input
+            class="inputs"
+            formControlName="password"
+            placeholder="Enter password"
+            required
+        />
+        <app-button
+            btnType="primaryBtn"
+            type="submit"
+        >
+            Login
+        </app-button>
+    </form>
 
-    <!-- <app-button
-        btnType="google"
-        type="button"
-        (click)='authService.GoogleAuth()'
-    > -->
-        <!-- <img
-                src={GoogleLogo}
-                alt="Google Logo"
-                class="google-logo"
-            />-->
-        <!-- Login with Google
-    </app-button> -->
+    <span class="error-login">
+        <p *ngIf="authService.isLoginError">
+            Wrong Credentials
+        </p>
+    </span>
+
 
     <div class="no-account">
         Don't have an account?

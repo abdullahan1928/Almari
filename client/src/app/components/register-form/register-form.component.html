@@ -5,25 +5,54 @@
         to get started
     </h2>
 
-    <form-input
-        *ngFor="let inputData of registerFormInputData"
-        [label]="inputData.label"
-        [required]="inputData.required"
-        [type]="inputData.type"
-        [name]="inputData.name"
-        [value]="defaultRegisterFormFields[inputData.name]"
-    > </form-input>
-    <!-- onChange="handleChange" -->
-
-    <!-- <span class="error-reg">{error ? <p>{error}</p> : <p></p>}</span> -->
-
-    <app-button
-        btnType="primaryBtn"
-        type="submit"
-        (click)="handleRegisterSubmit($event)"
+    <form
+        (ngSubmit)="onRegister($event)"
+        name="registerForm"
+        [formGroup]="registerForm"
     >
-        Register
-    </app-button>
+
+        <label class='labels'>
+            Name
+        </label>
+        <input
+            class="inputs"
+            formControlName="name"
+            placeholder="Enter name"
+            required
+        />
+        <br />
+        <label class='labels'>
+            Email
+        </label>
+        <input
+            class="inputs"
+            formControlName="email"
+            placeholder="Enter email address"
+            required
+        />
+        <br />
+        <label class='labels'>
+            Password
+        </label>
+        <input
+            class="inputs"
+            formControlName="password"
+            placeholder="Enter password"
+            required
+        />
+        <br />
+
+        <app-button
+            btnType="primaryBtn"
+            type="submit"
+        >
+            Register
+        </app-button>
+    </form>
+
+    <span class="error-reg">
+        <p *ngIf="authService.isRegistrationError">Email already taken.</p>
+    </span>
 
     <div class="have-account">
         Already have an account?
