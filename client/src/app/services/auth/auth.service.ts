@@ -18,15 +18,12 @@ export class AuthService {
   isRegistrationError = false;
   isLoginError = false;
 
-  isLoggedIn = false;
-
   login(loginForm: any) {
     return this.http.post(`${this.url}/login`, loginForm).subscribe({
       next: (response: any) => {
         console.log(response);
         localStorage.setItem('access_token', response.authToken)
         this.route.navigate(['/']);
-        this.isLoggedIn = true;
       },
       error: (error) => {
         console.log(error);
@@ -40,13 +37,23 @@ export class AuthService {
       next: (response: any) => {
         console.log(response);
         this.route.navigate(['/']);
-        this.isLoggedIn = true;
       },
       error: (error) => {
         console.log(error);
         this.isRegistrationError = true;
       }
     });
+  }
+
+  logOut() {
+    localStorage.removeItem('access_token');
+    this.route.navigate(['/']);
+    window.location.reload();
+  }
+
+  get isLoggedIn(): boolean {
+    let authToken = localStorage.getItem('access_token');
+    return (authToken !== null) ? true : false;
   }
 
 }

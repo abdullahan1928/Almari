@@ -21,8 +21,8 @@
         <span
             *ngIf="authService.isLoggedIn"
             class='nav-link'
+            (click)='authService.logOut()'
             >
-            <!-- (click)='authService.SignOut()' -->
             LOG OUT
         </span>
         <a
