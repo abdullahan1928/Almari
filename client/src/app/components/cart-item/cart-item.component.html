@@ -1,10 +1,41 @@
-<div class='cart-item-container'>
+<div class='cart-item-img'>
     <img
-        [src]='cartItem.imageUrl'
-        alt='cart-item.name'
+        src='{{cartItem.imageUrl}}'
+        alt='{{cartItem.name}}'
     />
-    <div class='cart-item-details'>
-        <h2 class='cart-item-name'>{{cartItem.name}}</h2>
-        <span class='cart-item-price-x-quantity'>{{cartItem.quantity}} x ${{cartItem.price}}</span>
+</div>
+
+<span class='cart-item-name'>{{cartItem.name}}</span>
+
+<div class='cart-item-quantity'>
+    <div
+        class='cart-arrow'
+        (click)="cartService.decQuantity(cartItem)"
+        [ngStyle]="{
+            'pointer-events': cartItem.quantity > 1 ? 'all' : 'none',
+            color: cartItem.quantity > 1 ? 'black' : 'grey'
+            }"
+    >
+        &#10094;
     </div>
+
+    <span class='cart-item-value'> {{cartItem.quantity}} </span>
+
+    <div
+        class='cart-arrow'
+        (click)="cartService.incQuantity(cartItem)"
+    >
+        &#10095;
+    </div>
+</div>
+
+<span class='cart-item-price'>
+    ${{cartItem.quantity*cartItem.price}}
+</span>
+
+<div
+    class='remove-from-cart-btn'
+    (click)="cartService.removeItem(cartItem)"
+>
+    &#10005;
 </div>

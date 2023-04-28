@@ -1,9 +1,9 @@
 <div class='cart-dropdown-container'>
     <div class='cart-items'>
-        <cart-item
+        <minicart-item
             *ngFor="let cartItem of cartService.cartItems"
             [cartItem]='cartItem'
-        ></cart-item>
+        ></minicart-item>
         <img
             src='../../../assets/empty-cart.png'
             alt="empty"
@@ -11,9 +11,9 @@
             *ngIf="cartService.getCartItems().length === 0"
         />
     </div>
-    <a routerLink='/checkout'>
+    <a routerLink='/cart'>
         <app-button btnType='primaryBtn'>
-            GO TO CHECKOUT
+            GO TO CART
         </app-button>
     </a>
 </div>

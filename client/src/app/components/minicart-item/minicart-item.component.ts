@@ -3,13 +3,15 @@ import { CartModel } from 'src/app/model/cart-model';
 import { CartService } from 'src/app/services/cart/cart.service';
 
 @Component({
-  selector: 'cart-item',
-  templateUrl: './cart-item.component.html',
-  styleUrls: ['./cart-item.component.scss']
+  selector: 'minicart-item',
+  templateUrl: './minicart-item.component.html',
+  styleUrls: ['./minicart-item.component.scss']
 })
-export class CartItemComponent implements OnInit {
+export class MinicartItemComponent implements OnInit {
 
-  constructor(public cartService: CartService) { }
+  constructor(
+    public cartService: CartService
+  ) { }
 
   ngOnInit(): void {
   }
@@ -17,6 +19,4 @@ export class CartItemComponent implements OnInit {
   @Input()
   cartItem!: CartModel;
 
-  @Input()
-  key: any;
 }
