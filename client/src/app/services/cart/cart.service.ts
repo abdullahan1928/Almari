@@ -22,6 +22,7 @@ export class CartService {
   }
 
   addToCart(item: any) {
+    console.log(item);
     if (this.cartItems.includes(item)) {
       item.quantity++;
     } else {

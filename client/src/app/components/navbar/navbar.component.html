@@ -16,8 +16,15 @@
             class="nav-link"
             routerLink="/contact"
         >
-            CONTACT
+            ORDERS
         </a>
+
+        <cart-icon
+        class="cart-ico"
+        (click)="toggleCart()"
+    ></cart-icon>
+    <cart-dropdown *ngIf="isCartOpen"></cart-dropdown>
+
         <span
             *ngIf="authService.isLoggedIn"
             class='nav-link'
@@ -32,11 +39,7 @@
         >
             LOG IN
         </a>
-        <cart-icon
-            class="cart-ico"
-            (click)="toggleCart()"
-        ></cart-icon>
-        <cart-dropdown *ngIf="isCartOpen"></cart-dropdown>
+       
     </div>
 </div>
 

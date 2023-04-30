@@ -26,6 +26,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { CartComponent } from './routes/cart/cart.component';
 import { MinicartItemComponent } from './components/minicart-item/minicart-item.component';
+import { CheckoutComponent } from './routes/checkout/checkout.component';
 
 @NgModule({
   declarations: [
@@ -50,7 +51,8 @@ import { MinicartItemComponent } from './components/minicart-item/minicart-item.
     HomeComponent,
     SearchFilterPipe,
     CartComponent,
-    MinicartItemComponent
+    MinicartItemComponent,
+    CheckoutComponent
   ],
   imports: [
     BrowserModule,

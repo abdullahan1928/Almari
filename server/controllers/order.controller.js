@@ -77,13 +77,16 @@ exports.updateOrder = async (req, res) => {
 // Delete Order
 exports.deleteOrder = async (req, res) => {
     try {
+        console.log(req.params.id);
         const { orderId } = req.params;
-        const order = await Order.findById(orderId);
+        const order = await Order.findById(req.params.id);
         if (!order) {
             throw new Error("Order not found");
         }
-        await order.remove();
-        res.send({ message: "Order deleted successfully" });
+        const deletedOrder = await order.deleteOne(); // use deleteOne method instead of remove
+        if (deletedOrder.deletedCount === 0) {
+            throw new Error("Order could not be deleted");
+        }        res.send({ message: "Order deleted successfully" });
     } catch (error) {
         res.status(400).send({ message: error.message });
     }

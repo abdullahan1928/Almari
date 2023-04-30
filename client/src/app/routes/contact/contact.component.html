@@ -1,1 +1,19 @@
-<p>contact works!</p>
+<div class="orders">
+    <div *ngFor="let order of orders" class="order">
+      <i class="fas fa-times-circle" (click)="deleteOrder(order._id)"></i>
+      <p><strong>Order ID:</strong> {{ order._id }}</p>
+      <p><strong>User ID:</strong> {{ order.userId }}</p>
+      <p><strong>Products:</strong></p>
+      <ul>
+        <li *ngFor="let product of order.products">
+          {{ product.name }} ({{ product.quantity }})
+        </li>
+      </ul>
+      <p><strong>Amount:</strong> {{ order.amount }}</p>
+      <p><strong>Address:</strong> {{ order.address }}</p>
+      <p><strong>Status:</strong> {{ order.status }}</p>
+      <p><strong>Created At:</strong> {{ order.createdAt }}</p>
+      <p><strong>Updated At:</strong> {{ order.updatedAt }}</p>
+    </div>
+  </div>
+  

@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -23,6 +24,7 @@ export class AuthService {
       next: (response: any) => {
         console.log(response);
         localStorage.setItem('access_token', response.authToken)
+        localStorage.setItem('userId', response.userId)
         this.route.navigate(['/']);
       },
       error: (error) => {
@@ -36,7 +38,7 @@ export class AuthService {
     return this.http.post(`${this.url}/register`, registerForm).subscribe({
       next: (response: any) => {
         console.log(response);
-        this.route.navigate(['/']);
+        this.route.navigate(['/login']);
       },
       error: (error) => {
         console.log(error);
@@ -47,6 +49,7 @@ export class AuthService {
 
   logOut() {
     localStorage.removeItem('access_token');
+    localStorage.removeItem('userId');
     this.route.navigate(['/']);
     window.location.reload();
   }
