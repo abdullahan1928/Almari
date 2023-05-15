@@ -20,6 +20,7 @@ export class AuthService {
   isLoginError = false;
 
   login(loginForm: any) {
+    localStorage.setItem('email', loginForm.email)
     return this.http.post(`${this.url}/login`, loginForm).subscribe({
       next: (response: any) => {
         console.log(response);
