@@ -27,6 +27,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { CartComponent } from './routes/cart/cart.component';
 import { MinicartItemComponent } from './components/minicart-item/minicart-item.component';
 import { CheckoutComponent } from './routes/checkout/checkout.component';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+
 
 @NgModule({
   declarations: [
@@ -60,6 +62,7 @@ import { CheckoutComponent } from './routes/checkout/checkout.component';
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
+    MatSnackBarModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

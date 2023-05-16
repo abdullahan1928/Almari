@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/services/auth/auth.service';
-import { User } from 'src/app/model/user-model';
-import { Subscription } from 'rxjs';
+import { CartService } from 'src/app/services/cart/cart.service';
+import { Router } from '@angular/router';
+import { CartItem } from 'src/app/model/cart-model';
+import { OrderService } from 'src/app/services/order/order.service';
+
 
 
 
@@ -20,24 +23,37 @@ export class CheckoutComponent implements OnInit {
     cvc: '',
   };
 
+  cartItems : CartItem[] = [];
+  cartTotal: number = 0;
+
   userId: any = null;
-  constructor(    public authService: AuthService) { }
+  
+  constructor( public authService: AuthService,
+    public cartService: CartService,
+    private router: Router,
+    private orderService: OrderService) {
+     }
 
 
 
-  ngOnInit(): void {
-    this.userId = localStorage.getItem('userId');
-    console.log(this.userId);  
+    ngOnInit(): void {
+      this.userId = localStorage.getItem('userId');
+      console.log(this.userId);  
+      this.cartTotal = this.cartService.cartTotal();
+      // this.getCartItems();
+    }
 
-  }
+  // getCartItems() {
+  //   for (let it of this.cartService.cartItems) {
+  //     var item = {'prodId': it._id, 'name':it.name, 'quantity': it.quantity};
+  //     this.cartItems.push(item);
+  //   }
+  //   // console.log(this.cartItems);
+  //   }
+  
 
 
 
 
-
-  onSubmit() {
-    console.log('Form submitted:', this.formData);
-    // You can send the formData to a backend service for further processing.
-  }
 
 }
