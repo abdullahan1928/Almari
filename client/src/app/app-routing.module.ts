@@ -11,7 +11,7 @@ import { CheckoutComponent } from './routes/checkout/checkout.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
-  { path: 'contact', component: ContactComponent },
+  { path: 'orders', component: ContactComponent },
   {
     path: 'login', component: LoginComponent,
   },
